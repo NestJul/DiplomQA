@@ -3,6 +3,7 @@ package ru.iteco.fmhandroid.ui.chert.data;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 
 import static ru.iteco.fmhandroid.ui.chert.data.Data.categories;
@@ -80,6 +81,10 @@ public class Helper {
 
     public static ViewAction waitId(final int viewId, final long millis) {
         return waitForView(withId(viewId), millis);
+    }
+
+    public static ViewAction waitText(final String viewText, final long millis) {
+        return waitForView(withText(viewText), millis);
     }
 
     public static int getRecyclerViewItemCount(@IdRes int recyclerViewId) {

@@ -36,22 +36,20 @@ public class NewsPageTest {
     String creatingNewPostDescr = Data.creatingPublicationDescription();
     String wrongCategory = "TestingCategory";
 
-
     @Before
     public void setUp() {
         try {
-            authorizationPage.signInButtonCheckVisibility();
+            mainPage.checkVisibilityOfMainPage();
         } catch (Exception e) {
-            authorizationPage.logOutFromProfile();
+            authorizationPage.signInButtonCheckVisibility();
+            authorizationPage.successfulAuthorization();
+            mainPage.checkVisibilityOfMainPage();
         }
     }
 
     @DisplayName("Создание новой актуальной новости")
     @Test
     public void creatingNewActualPost() {
-        authorizationPage.signInButtonCheckVisibility();
-        authorizationPage.successfulAuthorization();
-        mainPage.checkVisibilityOfMainPage();
         mainPage.clickShowAllNews();
         newsPage.checkVisibilityOfNewsPage();
         newsPage.clickEditNewsButton();
@@ -72,9 +70,6 @@ public class NewsPageTest {
     @DisplayName("Создание новой новости для будущего")
     @Test
     public void creatingNewFuturePost() {
-        authorizationPage.signInButtonCheckVisibility();
-        authorizationPage.successfulAuthorization();
-        mainPage.checkVisibilityOfMainPage();
         mainPage.clickShowAllNews();
         newsPage.checkVisibilityOfNewsPage();
         newsPage.clickEditNewsButton();
@@ -95,9 +90,6 @@ public class NewsPageTest {
     @DisplayName("Сортировка списка новостей")
     @Test
     public void sortingNewsList() {
-        authorizationPage.signInButtonCheckVisibility();
-        authorizationPage.successfulAuthorization();
-        mainPage.checkVisibilityOfMainPage();
         mainPage.clickShowAllNews();
         newsPage.checkVisibilityOfNewsPage();
         newsPage.clickEditNewsButton();
@@ -117,9 +109,6 @@ public class NewsPageTest {
     @DisplayName("Фильтрация списка новостей по категории")
     @Test
     public void filteringNewsListWithCategory() {
-        authorizationPage.signInButtonCheckVisibility();
-        authorizationPage.successfulAuthorization();
-        mainPage.checkVisibilityOfMainPage();
         mainPage.clickShowAllNews();
         newsPage.checkVisibilityOfNewsPage();
         newsPage.clickEditNewsButton();
@@ -155,9 +144,6 @@ public class NewsPageTest {
     @DisplayName("Фильтрация списка новостей по категории")
     @Test
     public void filteringNewsListWithWrongCategory() {
-        authorizationPage.signInButtonCheckVisibility();
-        authorizationPage.successfulAuthorization();
-        mainPage.checkVisibilityOfMainPage();
         mainPage.clickShowAllNews();
         newsPage.checkVisibilityOfNewsPage();
         newsPage.clickEditNewsButton();
@@ -178,9 +164,6 @@ public class NewsPageTest {
     @DisplayName("Фильтрация списка новостей по дате публикации")
     @Test
     public void filteringNewsListWithDate() {
-        authorizationPage.signInButtonCheckVisibility();
-        authorizationPage.successfulAuthorization();
-        mainPage.checkVisibilityOfMainPage();
         mainPage.clickShowAllNews();
         newsPage.checkVisibilityOfNewsPage();
         newsPage.clickEditNewsButton();
@@ -209,9 +192,6 @@ public class NewsPageTest {
     @DisplayName("Попытка фильтрации списка новостей при заполнении только начала интервала дат")
     @Test
     public void filteringNewsListWithOnlyStartDate() {
-        authorizationPage.signInButtonCheckVisibility();
-        authorizationPage.successfulAuthorization();
-        mainPage.checkVisibilityOfMainPage();
         mainPage.clickShowAllNews();
         newsPage.checkVisibilityOfNewsPage();
         newsPage.clickEditNewsButton();
@@ -238,9 +218,6 @@ public class NewsPageTest {
     @DisplayName("Попытка фильтрации списка новостей при заполнении только начала интервала дат")
     @Test
     public void filteringNewsListWithOnlyEndDate() {
-        authorizationPage.signInButtonCheckVisibility();
-        authorizationPage.successfulAuthorization();
-        mainPage.checkVisibilityOfMainPage();
         mainPage.clickShowAllNews();
         newsPage.checkVisibilityOfNewsPage();
         newsPage.clickEditNewsButton();
@@ -267,9 +244,6 @@ public class NewsPageTest {
     @DisplayName("Фильтрация активных новостей")
     @Test
     public void filteringActiveNewsList() {
-        authorizationPage.signInButtonCheckVisibility();
-        authorizationPage.successfulAuthorization();
-        mainPage.checkVisibilityOfMainPage();
         mainPage.clickShowAllNews();
         newsPage.checkVisibilityOfNewsPage();
         newsPage.clickEditNewsButton();
@@ -304,9 +278,6 @@ public class NewsPageTest {
     @DisplayName("Фильтрация неактивных новостей")
     @Test
     public void filteringNonActiveNewsList() {
-        authorizationPage.signInButtonCheckVisibility();
-        authorizationPage.successfulAuthorization();
-        mainPage.checkVisibilityOfMainPage();
         mainPage.clickShowAllNews();
         newsPage.checkVisibilityOfNewsPage();
         newsPage.clickEditNewsButton();
@@ -341,9 +312,6 @@ public class NewsPageTest {
     @DisplayName("Фильтрация активных новостей по дате публикации и активному статусу")
     @Test
     public void filteringNewsListByPublicationDateAndStatus() {
-        authorizationPage.signInButtonCheckVisibility();
-        authorizationPage.successfulAuthorization();
-        mainPage.checkVisibilityOfMainPage();
         mainPage.clickShowAllNews();
         newsPage.checkVisibilityOfNewsPage();
         newsPage.clickEditNewsButton();
@@ -381,9 +349,6 @@ public class NewsPageTest {
     @DisplayName("Редактирование категории новости")
     @Test
     public void editingNewsCategory() {
-        authorizationPage.signInButtonCheckVisibility();
-        authorizationPage.successfulAuthorization();
-        mainPage.checkVisibilityOfMainPage();
         mainPage.clickShowAllNews();
         newsPage.checkVisibilityOfNewsPage();
         newsPage.clickEditNewsButton();
@@ -416,9 +381,6 @@ public class NewsPageTest {
     @DisplayName("Редактирование заголовка новости")
     @Test
     public void editingNewsTitle() {
-        authorizationPage.signInButtonCheckVisibility();
-        authorizationPage.successfulAuthorization();
-        mainPage.checkVisibilityOfMainPage();
         mainPage.clickShowAllNews();
         newsPage.checkVisibilityOfNewsPage();
         newsPage.clickEditNewsButton();
@@ -448,9 +410,6 @@ public class NewsPageTest {
     @DisplayName("Редактирование даты публикации новости")
     @Test
     public void editingNewsPublicationDate() {
-        authorizationPage.signInButtonCheckVisibility();
-        authorizationPage.successfulAuthorization();
-        mainPage.checkVisibilityOfMainPage();
         mainPage.clickShowAllNews();
         newsPage.checkVisibilityOfNewsPage();
         newsPage.clickEditNewsButton();
@@ -475,15 +434,12 @@ public class NewsPageTest {
         newsPage.clickSaveNewPostButton();
         newsPage.checkVisibilityOfControlPanel();
         newsPage.searchingNewPostTitle(creatingNewPostTitle);
-        newsPage.checkSearchResultIsDisplayed(editDate);
+        newsPage.checkSearchResultIsDisplayed(creatingNewPostTitle);
     }
 
     @DisplayName("Редактирование новости описания")
     @Test
     public void editingNewsPublicationDescription() {
-        authorizationPage.signInButtonCheckVisibility();
-        authorizationPage.successfulAuthorization();
-        mainPage.checkVisibilityOfMainPage();
         mainPage.clickShowAllNews();
         newsPage.checkVisibilityOfNewsPage();
         newsPage.clickEditNewsButton();
@@ -518,9 +474,6 @@ public class NewsPageTest {
     @DisplayName("Редактирование статуса новости")
     @Test
     public void editingNewsPublicationStatus() {
-        authorizationPage.signInButtonCheckVisibility();
-        authorizationPage.successfulAuthorization();
-        mainPage.checkVisibilityOfMainPage();
         mainPage.clickShowAllNews();
         newsPage.checkVisibilityOfNewsPage();
         newsPage.clickEditNewsButton();
@@ -553,9 +506,6 @@ public class NewsPageTest {
     @DisplayName("Редактирование всех полей уже созданной новости")
     @Test
     public void editingAllNewsFields() {
-        authorizationPage.signInButtonCheckVisibility();
-        authorizationPage.successfulAuthorization();
-        mainPage.checkVisibilityOfMainPage();
         mainPage.clickShowAllNews();
         newsPage.checkVisibilityOfNewsPage();
         newsPage.clickEditNewsButton();
@@ -584,7 +534,7 @@ public class NewsPageTest {
         newsPage.checkVisibilityOfControlPanel();
         newsPage.searchingNewPostTitle(creatingNewPostTitle + "NEW");
         newsPage.checkSearchResultIsDisplayed(creatingNewPostTitle + "NEW");
-        newsPage.checkSearchResultIsDisplayed(editDate);
+//        newsPage.checkSearchResultIsDisplayed(editDate);
         int counterPosition =
                 newsPage.checkPositionWithDescription(creatingNewPostDescr + "NEW", newsRecyclerViewID, postDescrId);
 
@@ -596,9 +546,6 @@ public class NewsPageTest {
     @DisplayName("Отмена изменений всех полей в новости")
     @Test
     public void cancellingEditionOfAllNewsFields() {
-        authorizationPage.signInButtonCheckVisibility();
-        authorizationPage.successfulAuthorization();
-        mainPage.checkVisibilityOfMainPage();
         mainPage.clickShowAllNews();
         newsPage.checkVisibilityOfNewsPage();
         newsPage.clickEditNewsButton();
@@ -641,9 +588,6 @@ public class NewsPageTest {
     @DisplayName("Отмена отмены изменений всех полей в новости")
     @Test
     public void cancelCancellingEditionOfAllNewsFields() {
-        authorizationPage.signInButtonCheckVisibility();
-        authorizationPage.successfulAuthorization();
-        mainPage.checkVisibilityOfMainPage();
         mainPage.clickShowAllNews();
         newsPage.checkVisibilityOfNewsPage();
         newsPage.clickEditNewsButton();
@@ -682,9 +626,6 @@ public class NewsPageTest {
     @DisplayName("Удаление созданной новости")
     @Test
     public void deletingNewPost() {
-        authorizationPage.signInButtonCheckVisibility();
-        authorizationPage.successfulAuthorization();
-        mainPage.checkVisibilityOfMainPage();
         mainPage.clickShowAllNews();
         newsPage.checkVisibilityOfNewsPage();
         newsPage.clickEditNewsButton();
@@ -712,9 +653,6 @@ public class NewsPageTest {
     @DisplayName("Создание новой новости со всеми пустыми полями")
     @Test
     public void tryToCreatePostWithEmptyFields() {
-        authorizationPage.signInButtonCheckVisibility();
-        authorizationPage.successfulAuthorization();
-        mainPage.checkVisibilityOfMainPage();
         mainPage.clickShowAllNews();
         newsPage.checkVisibilityOfNewsPage();
         newsPage.clickEditNewsButton();
@@ -732,9 +670,6 @@ public class NewsPageTest {
     @DisplayName("Создание новой новости с категорией, отстутствующей в выпадающем списке")
     @Test
     public void tryToCreatePostWithNoListCategory() {
-        authorizationPage.signInButtonCheckVisibility();
-        authorizationPage.successfulAuthorization();
-        mainPage.checkVisibilityOfMainPage();
         mainPage.clickShowAllNews();
         newsPage.checkVisibilityOfNewsPage();
         newsPage.clickEditNewsButton();

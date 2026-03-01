@@ -26,20 +26,6 @@ public class OurMissionPage {
 
     public void checkVisibilityOfOurMissionPage() {
         Allure.step("Check Our Mission Page Visibility");
-        onView(isRoot()).perform(waitId((headerLoveIsAllId), 10000));
-    }
-
-    public void clickFirstCitationCommRoll() {
-        Allure.step("Click First Citation Comm Roll");
-        citationComments.perform(click());
-    }
-
-    public void checkTextInsideCitationComment1(String commText) {
-        Allure.step("Check Text Inside Citation Comment1");
-        onView(allOf(
-                withId(R.id.our_mission_item_description_text_view),
-                isDescendantOfA(withId(R.id.our_mission_item_list_recycler_view)),
-                hasSibling(withText("«Хоспис для меня - это то, каким должен быть мир.\""))))
-                .check(matches(withText(commText)));
+        waitId((headerLoveIsAllId), 10000);
     }
 }

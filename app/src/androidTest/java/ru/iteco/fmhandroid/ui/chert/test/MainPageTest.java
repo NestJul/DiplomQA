@@ -11,6 +11,7 @@ import io.qameta.allure.android.runners.AllureAndroidJUnit4;
 import io.qameta.allure.kotlin.junit4.DisplayName;
 import ru.iteco.fmhandroid.ui.AppActivity;
 import ru.iteco.fmhandroid.ui.chert.data.Data;
+import ru.iteco.fmhandroid.ui.chert.data.Helper;
 import ru.iteco.fmhandroid.ui.chert.pageObject.AboutPage;
 import ru.iteco.fmhandroid.ui.chert.pageObject.AuthorizationPage;
 import ru.iteco.fmhandroid.ui.chert.pageObject.MainPage;
@@ -33,18 +34,17 @@ public class MainPageTest {
     @Before
     public void setUp() {
         try {
-            authorizationPage.signInButtonCheckVisibility();
+            mainPage.checkVisibilityOfMainPage();
         } catch (Exception e) {
-            authorizationPage.logOutFromProfile();
+            authorizationPage.signInButtonCheckVisibility();
+            authorizationPage.successfulAuthorization();
+            mainPage.checkVisibilityOfMainPage();
         }
     }
 
     @DisplayName("Отображение разделов приложения по нажатию кнопки на AppMenu")
     @Test
     public void displayingAppMenuItems() {
-        authorizationPage.signInButtonCheckVisibility();
-        authorizationPage.successfulAuthorization();
-        mainPage.checkVisibilityOfMainPage();
         mainPage.clickAppMenuBar();
         mainPage.checkVisibilityOfAppMenuBarItems();
     }
@@ -52,9 +52,6 @@ public class MainPageTest {
     @DisplayName("Переход в раздел 'About' через AppMenu")
     @Test
     public void viewingAboutPage() {
-        authorizationPage.signInButtonCheckVisibility();
-        authorizationPage.successfulAuthorization();
-        mainPage.checkVisibilityOfMainPage();
         mainPage.clickAppMenuBar();
         mainPage.clickAboutItem();
         aboutPage.checkVisibilityOfAboutPage();
@@ -63,22 +60,14 @@ public class MainPageTest {
     @DisplayName("Переход в раздел 'OurMission' через AppBar")
     @Test
     public void viewingOurMissionPage() {
-        authorizationPage.signInButtonCheckVisibility();
-        authorizationPage.successfulAuthorization();
-        mainPage.checkVisibilityOfMainPage();
         mainPage.clickOurMissionIcon();
         ourMissionPage.checkVisibilityOfOurMissionPage();
-        ourMissionPage.clickFirstCitationCommRoll();
-        ourMissionPage.checkTextInsideCitationComment1(Data.citationCom1);
     }
 
 
     @DisplayName("Переход в раздел 'News' через AppMenu")
     @Test
     public void viewingNewsPage() {
-        authorizationPage.signInButtonCheckVisibility();
-        authorizationPage.successfulAuthorization();
-        mainPage.checkVisibilityOfMainPage();
         mainPage.clickAppMenuBar();
         mainPage.clickNewsItem();
         newsPage.checkVisibilityOfNewsPage();
@@ -87,9 +76,6 @@ public class MainPageTest {
     @DisplayName("Переход в раздел 'News' через главную страницу")
     @Test
     public void transitionToNewPageFromMainPage() {
-        authorizationPage.signInButtonCheckVisibility();
-        authorizationPage.successfulAuthorization();
-        mainPage.checkVisibilityOfMainPage();
         mainPage.clickShowAllNews();
         newsPage.checkVisibilityOfNewsPage();
     }

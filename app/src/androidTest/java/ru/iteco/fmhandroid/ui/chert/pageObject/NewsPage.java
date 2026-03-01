@@ -41,15 +41,19 @@ import ru.iteco.fmhandroid.ui.chert.data.Helper;
 
 
 public class NewsPage {
-    public View decorView;
-    private static final ViewInteraction sortNewsButton = onView(withId(R.id.sort_news_material_button));
-    private static final ViewInteraction filterNewsButton = onView(withId(R.id.filter_news_material_button));
-    private static final ViewInteraction editNewsButton = onView(withId(R.id.edit_news_material_button));
-    private static final ViewInteraction addNewsButton = onView(withId(R.id.add_news_image_view));
+
     private static final int sortNewsButtonID = R.id.sort_news_material_button;
+    private static final int filterNewsButtonID = R.id.filter_news_material_button;
+    private static final int editNewsButtonID = R.id.edit_news_material_button;
     private static final int addNewsButtonID = R.id.add_news_image_view;
     private static final int topPartOfCreatingNewsTitleID = R.id.custom_app_bar_title_text_view;
     private static final int topPartOfEditingNewsTitleID = R.id.custom_app_bar_title_text_view;
+    public static final int filterButtonID = R.id.filter_button;
+    public View decorView;
+    private static final ViewInteraction sortNewsButton = onView(withId(sortNewsButtonID));
+    private static final ViewInteraction filterNewsButton = onView(withId(filterNewsButtonID));
+    private static final ViewInteraction editNewsButton = onView(withId(editNewsButtonID));
+    private static final ViewInteraction addNewsButton = onView(withId(addNewsButtonID));
     private static final ViewInteraction categoryField = onView(withId(R.id.news_item_category_text_auto_complete_text_view));
     private static final ViewInteraction titleField = onView(withId(R.id.news_item_title_text_input_edit_text));
     private static final ViewInteraction publicationDateField = onView(withId(R.id.news_item_publish_date_text_input_edit_text));
@@ -65,7 +69,7 @@ public class NewsPage {
     public static final int filterNewsHeaderID = R.id.filter_news_title_text_view;
     public static final int newsStatusId = R.id.news_item_published_text_view;
     public static final int publicationDateId = R.id.news_item_publication_date_text_view;
-    public static final ViewInteraction filterButton = onView(withId(R.id.filter_button));
+    public static final ViewInteraction filterButton = onView(withId(filterButtonID));
     public static final ViewInteraction publicationDateStartField = onView(withId(R.id.news_item_publish_date_start_text_input_edit_text));
     public static final ViewInteraction publicationDateEndField = onView(withId(R.id.news_item_publish_date_end_text_input_edit_text));
     public static final ViewInteraction notActiveNewsCheckboxFilter = onView(withId(R.id.filter_news_inactive_material_check_box));
@@ -87,6 +91,7 @@ public class NewsPage {
 
     public void clickEditNewsButton() {
         Allure.step("Click Edit News button");
+        onView(isRoot()).perform(waitId(editNewsButtonID, 10000));
         editNewsButton.perform(click());
     }
 
@@ -108,21 +113,25 @@ public class NewsPage {
 
     public void clickAddNewsButton() {
         Allure.step("Click Add News Button");
+        onView(isRoot()).perform(waitId(addNewsButtonID, 10000));
         addNewsButton.perform(click());
     }
 
     public void clickSortNewsButton() {
         Allure.step("Click Sort News Button");
+        onView(isRoot()).perform(waitId(sortNewsButtonID, 10000));
         sortNewsButton.perform(click());
     }
 
     public void clickFilterNewsButton() {
         Allure.step("Click Filter News Button");
+        onView(isRoot()).perform(waitId(filterNewsButtonID, 10000));
         filterNewsButton.perform(click());
     }
 
     public void clickFilterButton() {
         Allure.step("Click Filter Button");
+        onView(isRoot()).perform(waitId(filterButtonID, 10000));
         filterButton.perform(click());
     }
 
@@ -211,6 +220,14 @@ public class NewsPage {
                 withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
         titleView.check(matches(isDisplayed()));
         titleView.check(matches(withText(containsString(text))));
+    }
+
+    public void checkSearchResultIsDisplayed(String text1, String text2) {
+        Allure.step("Check visibility on search element with text1 = " + text1 + " and text2 = " + text2);
+        ViewInteraction titleView = onView(allOf(withText(text1),withText(text2),
+                withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
+        titleView.check(matches(isDisplayed()));
+        titleView.check(matches(withText(containsString(text1))));
     }
 
     public String getCreationDateOfThePost(int fieldID, int recyclerViewPos) {
