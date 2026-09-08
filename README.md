@@ -1,32 +1,67 @@
-Запуск авто-тестов
-1. Условия для запуска авто-тестов
-Java JDK 11: Убедитесь, что у вас установлена Java Development Kit версии 11.
-Android Studio: Убедитесь, что у вас установлена последняя версия Android Studio с настроенной файловой средой:
-Добавлен путь до JAVA_HOME в переменные окружения.
-Настроена переменная ANDROID_HOME, указан путь до SDK Android.
-Эмулятор Android: Убедитесь, что у вас установлен и настроен эмулятор Android с версией API 31.
-2. Клонирование и настройка проекта
-Склонируйте репозиторий проекта:
-git clone https://github.com/NestJul/DiplomQA
-Откройте проект в Android Studio.
-Подождите, пока завершится индексация и синхронизация проекта с Gradle.
-3. Запуск UI-тестов:
-* Через терминал.
+# DiplomQA — автоматизация тестирования Android-приложения
 
-  `./gradlew connectedAndroidTest`
-* Через Android Studio
+Дипломный QA-проект с UI-автотестами учебного Android-приложения. Репозиторий содержит тестовую документацию, исходный код тестов и материалы для анализа результатов.
 
-  `ru/iteco/fmhandroid/ui/chert/test`
+## Что проверяется
 
-  `Открыть контекстное меню -> Run Tests...`
+- авторизация пользователя;
+- навигация по основным разделам приложения;
+- создание, редактирование и фильтрация сущностей;
+- позитивные и негативные пользовательские сценарии;
+- корректность отображения данных и элементов интерфейса.
 
-4. Построение Allure-отчета:
+## Стек
 
-* забрать файлы с устройства из `/data/data/ru.iteco.fmhandroid/files/storage/emulated/0/Android/data/ru.iteco.fmhandroid/files/allure-results`
-* сложить их в `allure-reports`
-* в терминале выполнить
+- Kotlin и Java;
+- Android Studio;
+- Espresso и AndroidX Test;
+- JUnit;
+- Gradle;
+- Allure.
 
-  `allure serve allure-reports`
+## Тестовая документация
 
+- [План автоматизации](Plan.md)
+- [Тест-кейсы](Cases.xlsx)
+- [Результаты тестирования](Result.md)
+- [Чек-лист](check.xlsx)
 
+## Требования для запуска
 
+- Java JDK 11;
+- Android Studio и Android SDK;
+- настроенные переменные `JAVA_HOME` и `ANDROID_HOME`;
+- Android-эмулятор с API 31.
+
+## Запуск тестов
+
+1. Клонировать репозиторий:
+
+```bash
+git clone https://github.com/NestJul/DiplomQA.git
+cd DiplomQA
+```
+
+2. Запустить эмулятор и дождаться его полной загрузки.
+
+3. Выполнить тесты:
+
+```bash
+./gradlew connectedAndroidTest
+```
+
+Также тесты можно запускать из Android Studio из пакета с UI-тестами.
+
+## Allure-отчёт
+
+После выполнения тестов скопировать результаты с устройства в локальную папку `allure-results`, затем выполнить:
+
+```bash
+allure serve allure-results
+```
+
+## Структура проекта
+
+- `app/src/androidTest` — UI-автотесты;
+- `app/src/main` — исходный код приложения;
+- `Plan.md`, `Result.md`, `Cases.xlsx`, `check.xlsx` — тестовая документация.
